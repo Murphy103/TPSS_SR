@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>修改</title>
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+    <script type="text/javascript" src="/TPSS_SR/js/scripts/jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common.js"></script>
+	<style type="text/css">
+		.mini-fit{
+			height: 100% ! important;
+		}
+	</style>
+</head>
+<body>    
+    <form id="modifyform" method="post">
+        <input name="id" class="mini-hidden" />
+        <input id="channelId" type="hidden"/>
+        <div style="padding-left:11px;padding-bottom:5px;">
+             <table  border="0" cellpadding="1" cellspacing="2" style="width:100%;
+            	table-layout:fixed;border-collapse:separate; border-spacing:0px 20px">        
+                <tr>
+                    <td style="width:70px;">销售员名称</td>
+                    <td style="width:300px;" >    
+                        <input id="STAFF_NAME" name="STAFF_NAME" allowInput="fasle" class="mini-textbox" emptyText="请选择..." style="width:300px;margin-left: 5px;"
+                        valueField="ID" textfield="TEXT"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:70px;">翼支付账号</td>
+                    <td style="width:300px;">    
+                        <input id="YZF_ACCOUNT" name="YZF_ACCOUNT" class="mini-textbox" allowInput="true" multiSelect="true" style="width:300px;margin-left: 5px;"
+                        showFolderCheckBox="false"/>
+                    </td>
+                </tr> 
+                <tr>                           
+                    <td style="width:70px;">销售员属性</td>
+                    <td style="width:300px;" >    
+                        <input id="BUSI_CODE" name="BUSI_CODE" class="mini-combobox" allowInput="true"  style="width:300px;margin-left: 5px;"
+                        valueField="VALUE" textfield="TEXT" showNullItem="true" nullItemText="===请选择==="/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:70px;">归属门店</td>
+                    <td style="width:300px;" >    
+<!--                         <input id="CHANNEL_ID" name="CHANNEL_ID" class="mini-combobox" allowInput="true"  style="width:300px;margin-left: 5px;" -->
+<!--                         	allowInput="true" data="getData('TPSS_CHANNEL_NAME_Q',false)" showNullItem="true" nullItemText="===请选择==="/> -->
+<input id="CHANNEL_NAME" name="CHANNEL_NAME" class="mini-textbox"  style="width:180px;margin-left: 5px;"
+						                       valueField="ID" textfield="TEXT"/>
+<input id="CHANNEL_ID" name="CHANNEL_ID" class="mini-textbox"  style="width:180px;margin-left: 5px;"
+						                       valueField="ID" textfield="TEXT"/><a class="mini-button " onclick="selectchannel()"style="margin-left: 5px;">选择</a>
+                    </td>
+                </tr>
+                 <tr>
+                    <td style="width:70px;">状态</td>
+                    <td style="width:300px;" >    
+                        <input id="STATE" name="STATE" class="mini-combobox" allowInput="true"  style="width:300px;margin-left: 5px;"
+                        	allowInput="true" data="getData('TB_PTY_CODE_Q',false,'ASSISTANTINFO_STATUS')" showNullItem="true" nullItemText="===请选择==="/>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div style="text-align:center;padding:10px;">
+        <a class="mini-button opBtn" onclick="onOk" style="margin-left: 10px;" plain="false">保存</a>               
+        <a class="mini-button opBtn" onclick="onCancel()" style="margin-left: 10px;" plain="false">取消</a>    
+        </div>        
+    </form>
+    <script type="text/javascript">
+    mini.parse();
+    var olddata = new Object();
+    var form = new mini.Form("modifyform");
+    var nowurl  = document.location.href;
+    nowurl = nowurl.substring(0,nowurl.indexOf("html"));
+    $(function(){
+    	//获取初始化数据
+    	mini.parse();
+    	var url = nowurl+'ControlServlet.do?serviceName=commonServlet&methodName=gridValue&service_name=COM_INIT_BY_PTYCODE&sV1=STAFF_TYPE&sV2=0';
+    	var BUSI_CODE = mini.get("BUSI_CODE");
+    	BUSI_CODE.load(url);
+    	/* var url = nowurl+'ControlServlet.do?serviceName=commonServlet&methodName=selectValueForInput';
+    	var CHANNEL_NAME = mini.get("CHANNEL_NAME");
+    	queryDataForInput(CHANNEL_NAME,url,"TPSS_CHANNEL_NAME_Q"); */
+    	
+    	mini.get("#CHANNEL_NAME").setEnabled(false);
+    	mini.get("#CHANNEL_ID").hide();
+    })
+    
+    function selectchannel(){
+    	var url =nowurl+"html/reward/dataManage/shopassistantmanage/assistantinfomanage/select-channel-all.html";
+    	showAddDialog("归属门店",890,550,url,
+    	        function destroy(data){
+    				if(data !="close" && data !=null){
+    					mini.get("CHANNEL_NAME").setValue(data.channelName);
+    					mini.get("CHANNEL_ID").setValue(data.channelId);
+    					$("#channelId").val(data.channelId);
+    				}
+    				
+    	    });
+    }
+    function SaveData() {
+    	//保存修改
+    	var data = form.getData();
+    	data.STAFF_ID = olddata.STAFF_ID;
+//     	if($("#channelId").val()!=''){
+//     		data.CHANNEL_ID=$("#channelId").val();
+//     	}
+    	if(data.STAFF_NAME!=null&&data.YZF_ACCOUNT!=null&&data.BUSI_CODE!=null&&data.CHANNEL_ID!=null){
+    		//校验翼支付账号
+    		var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
+			if(!myreg.test(data.YZF_ACCOUNT)){ 
+    			mini.alert('请输入有效的手机号码！'); 
+			}else{
+    			data.service_name = "SALE_STAFF_A"
+   		         $.jsonAjax("commonServlet", "commonInsertdata", data, function(data) {
+   		        	mini.alert(data.data,"保存",CloseWindow);
+   		    	});
+			}
+    	}else{
+    		mini.alert("各项值不能为空");
+    	}
+    }
+    function SetData(data) {
+    	mini.parse();
+        if (data.action == "modify") {
+            //跨页面传递的数据对象，克隆后才可以安全使用
+            data = mini.clone(data);
+            olddata = data;
+        	form.setData(data);
+        	//设置默认值  考虑优化成默认带过来的数据
+            form.setChanged(false);
+        }
+    }
+    function GetData() {
+        var o = form.getData();
+        return o;
+    }
+    function CloseWindow(action) {            
+        if (action == "close" && form.isChanged()) {
+            if (mini.confirm("数据被修改了，是否先保存？")) {
+                return false;
+            }
+        }
+        if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+        else window.close();            
+    }
+    function onOk(e) {
+        SaveData();
+    }
+    function onCancel(e) {
+        CloseWindow("cancel");
+    }
+    </script>
+</body>
+</html>

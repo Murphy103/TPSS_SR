@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>项目分成数据维护</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<style type="text/css">
+		.mini-fit{
+			height: 100% ! important;
+		}
+	</style>
+</head>
+<body>
+<div class="mini-fit">
+    <div style="width:100%;">
+        <div class="search" id="queryFrom" style="padding: 0px;height: 100px;">
+            <table style="width:100%;height: 100%;">
+                <tr>
+                	<td>
+                        <span style="padding-left: 5px;">本地网：</span> 
+                        <input id="LATN_ID" name="LATN_ID" class="mini-combobox" emptyText="请选择..." style="width:180px;margin-left: 5px;"
+                        	url="../contract/service.jsp?method=DBselect_latnid"/>
+                     </td>
+                     <td>
+                        <span style="padding-left: 5px;">账期：</span> 
+                        <input id="BILLING_CYCLE_ID" name="BILLING_CYCLE_ID" class="mini-combobox" emptyText="请选择..." style="width:180px;margin-left: 5px;"/>
+                     </td>
+                     <td>
+                        <span style="margin-left: 5px;">合同编号：</span> 
+                        <input id="CONTRACT_ID1" name="CONTRACT_ID" class="mini-autocomplete" required="true" style="width:180px;margin-left: 5px;"
+	    					valueField="id" textField="text"
+	        				url="../contract/service.jsp?method=DBselect_contractid" value="zdwc" text="自动完成功能"/>
+                     </td>
+                     <td>
+                        <span style="margin-left: 18px;">合同名称：</span> 
+                        <input id="CONTRACT_NAME" name="CONTRACT_NAME" class="mini-autocomplete" required="true" style="width:180px;margin-left: 5px;"
+	    					valueField="id" textField="text"
+	        				url="../data/DataService?method=autoComplete" value="自动完成功能" text="自动完成功能"/>
+                     </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <a class="mini-button" onclick="search()">查询</a>
+                        <a class="mini-button" onclick="saveData()">保存</a>            
+                    </td>
+                    
+                </tr>
+            </table>           
+        </div>
+    </div>
+    <div id="datagrid1" class="mini-datagrid" style="width:100%;height:100%;" 
+        url="../data/AjaxService.aspx?method=SearchEmployees" idField="id" 
+        allowResize="true" pageSize="20" 
+        allowCellEdit="true" allowCellSelect="true" multiSelect="true" 
+        editNextOnEnterKey="true"  editNextRowCell="true"        
+    >
+        <div property="columns">
+            
+            <div name="ITEM"  field="ITEM" headerAlign="center" allowSort="true" width="150" >项目
+                
+            </div>                      
+            <div name="AMOUNT" field="AMOUNT" width="100" allowSort="true" >数量
+                <input property="editor" class="mini-textbox" style="width:100%;"/>
+            </div>    
+            <div name="U_PRICE" field="U_PRICE" width="120" headerAlign="center" allowSort="true">单价
+                
+            </div>
+            <div name="UNIT" field="UNIT" width="120" headerAlign="center" allowSort="true">单位
+                
+            </div>                                                                   
+    	</div>
+ 	</div>
+</div>
+	<script type="text/javascript">
+	mini.parse();
+	function search(){
+		//
+	}
+
+	function saveData(){
+		//
+	}
+	</script>
+</body>
+</html>

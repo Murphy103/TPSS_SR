@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>终端导入</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/reward/dataManage/terminalClass/terminalImport.js"></script>
+</head>
+<body>    
+    <!-- <div class="p5" style="height:70px;">
+        <table id="class_form" class="formTable6" style="table-layout: fixed;">
+			<colgroup>
+				<col width="100px" />
+				<col />
+				<col width="100px" />
+				<col />
+			</colgroup>
+						
+			<tr>
+				<th><span class="fred">*</span>Excel文件：</th>
+				<td colspan="3"><input id="IMPORT_FILE" name="IMPORT_FILE" class="mini-textbox" 
+				required="true" style="width:80%;margin-left: 5px;" />
+				<a class="mini-button"  onclick="queryData();">选择</a></td>
+			</tr>
+			
+			<tr>
+				<td colspan="4"><a href="../../../../../template/ref_dem_type_ofr.xls" target="_blank" style="padding-left:20px;padding-right:50px;">模板下载</a> 右键另存为xls格式</td>
+			</tr>
+			
+		</table>
+	</div> -->
+	
+	
+	<form  id="upload" method="post" enctype="multipart/form-data">
+		    <table id="class_form" class="formTable6" style="table-layout: fixed;">
+				<tr>
+					<th><span class="fred">*</span>Excel文件：</th>
+					<td colspan="3"><input type="file" class="mini-htmlfile" name="file_path"  id="file_path" style="width:300px;"/>
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="4"><a href="../../../../../template/ref_dem_type_terminal.xls" target="_blank" style="padding-left:20px;padding-right:50px;">模板下载</a> 右键另存为xls格式</td>
+				</tr>
+				
+			</table>
+			
+			<div class="mini-toolbar" style="height:28px;text-align: center; padding-top: 8px; padding-bottom:8px;"
+		         borderStyle="border:0;border-top:solid 1px #b1c3e0;">
+		        <a class="mini-button" onclick="onSubmit()" id="add-dir"  data-options='{"pId":"add-dir"}'>保存</a> 
+		        <span style="display: inline-block; width: 25px;"></span> 
+		        <a class="mini-button" onclick="closeWindow(systemVar.CANCEL)">取消</a>
+		    </div>
+			
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>合同用户维护-用户导入</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/head.js/scripts/fileUpload/swfupload.js"></script>
+	<style type="text/css">
+		.mini-fit{
+			height: 100% ! important;
+		}
+	</style>
+</head>
+<body>
+<div class="mini-fit">
+    <div style="width: 100%;">
+        <div class="search" id="queryFrom" style="padding: 0px;height: 100px;">
+            <table style="width: 100%;height: 100%;">
+            
+            	
+                <tr>
+                    
+                      <td >
+                       <span style="padding-left: 18px;">模板下载：</span> 
+                      	<a href="#">用户导入模板</a>(右键另存为)
+                     </td>
+                   
+                </tr>
+                <tr>
+                    
+                      <td >
+                       <span style="padding-left: 18px;">文件选择：</span> 
+                     	<input id="fileupload1" class="mini-fileupload" name="Fdata" limitType="*.txt" 
+						    flashUrl="swfupload/swfupload.swf"
+						    uploadUrl="upload.aspx"
+						    onuploadsuccess="onUploadSuccess" 
+						    onuploaderror="onUploadError" onfileselect="onFileSelect"
+						    />
+					    
+					     <input type="button" value="上传" onclick="startUpload()"/>
+   
+                     	
+                     </td>
+                   
+                </tr>
+            </table>
+        </div>
+    </div>
+  
+   
+   
+</div>
+</body>
+</html>
+<script> mini.parse();
+
+//动态设置url
+//var fileupload = mini.get("fileupload1");
+//fileupload.setUploadUrl("upload.aspx");
+
+function onFileSelect(e) {
+    //alert("选择文件");
+}
+function onUploadSuccess(e) {
+
+    alert("上传成功：" + e.serverData);
+
+    this.setText("");
+}
+function onUploadError(e) {
+    
+}
+
+function startUpload() {
+    var fileupload = mini.get("fileupload1");
+
+    fileupload.startUpload();
+}
+
+
+</script>

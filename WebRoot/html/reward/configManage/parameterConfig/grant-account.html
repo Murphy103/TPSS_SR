@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>发放账户配置</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/reward/configManage/parameterConfig/grant-account.js"></script>
+	
+</head>
+<body>
+
+    <div style="width: 100%;">
+        <div class="search" id="queryFrom" style="height: 30px;">
+        	 <span style="padding-left: 5px;">账户名称：</span>  
+                        <input id="ACCOUNT_NAME" name="ACCOUNT_NAME" class="mini-textbox" style="width:180px;margin-left: 5px;"
+                    		/> 
+                    		
+             <a class="mini-button"  onclick="queryData();" style="margin-left: 30px;" plain="false">查询</a>
+         	<a class="mini-button " onclick="addClass()" style="margin-left: 30px;" plain="false">新增</a>
+            <a class="mini-button " onclick="modifyClass()" style="margin-left: 30px;" plain="false">修改</a>
+            <a class="mini-button " onclick="delClass()" style="margin-left: 30px;" plain="false">删除</a>       		
+           
+        </div>
+    </div>
+  
+    <div class="mini-fit" style="margin-top: 5px;">
+    
+	    <div id="class_grid" class="mini-datagrid" style="width: 100%; height: 245px;" allowAlternating="true"
+	             idField="REF_DEM_TYPE_ID" allowResize="false" allowCellselect="false"  multiSelect="true"
+	             showFooter="true" sortMode="client" onselectionchanged="onSelectionChanged" pageSize="6">
+	    </div> 
+	</div>    
+	 <div class="mini-fit" style="margin-top: 5px;">   
+	    <div style="width: 100%;">
+	        <div class="search" style="height: 20px;">
+	        	<b>关联规则</b>
+	        </div>
+	    </div>
+	    
+	    <div style="width: 100%;">
+	        <div class="search" style="height: 30px;background-color:white;">
+	        <span style="padding-left: 5px;">规则名称：</span>  
+                        <input id="RULE_NAME" name="RULE_NAME" class="mini-textbox" style="width:180px;margin-left: 5px;"
+                    		/> 
+                 <a class="mini-button"  onclick="queryRule();" style="margin-left: 30px;" plain="false">查询</a>
+	        	 <a class="mini-button " onclick="addRule()" style="margin-left: 30px;" plain="false">新增</a>
+	             <a class="mini-button " onclick="delRule()" style="margin-left: 30px;" plain="false">删除</a>
+	           
+	        </div>
+	    </div>
+	 </div>
+	    
+	 <div class="mini-fit" style="margin-top: 5px;"> 
+	    <div id="rule_grid" class="mini-datagrid" style="width: 100%; height: 245px;" allowAlternating="true" pageSize="6" multiSelect="true">
+	       
+	    </div>   
+    
+    </div>
+  
+   
+</body>
+</html>

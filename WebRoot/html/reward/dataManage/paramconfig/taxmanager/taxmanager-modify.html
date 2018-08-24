@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>修改</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<style type="text/css">
+		.mini-fit{
+			height: 100% ! important;
+			
+		}
+	</style>
+</head>
+<body>    
+     
+    <form id="modifyform" method="post">
+        <input name="id" class="mini-hidden" />
+        <div style="padding-left:11px;padding-bottom:5px;">
+             <table  border="0" cellpadding="1" cellspacing="2" style="width:100%;
+            	table-layout:fixed;border-collapse:separate; border-spacing:0px 20px">        
+                <tr>
+                    <td style="width:70px;">支付代理商</td>
+                    <td style="width:300px;" >    
+                        <input id="PAY_AGENT_NAME" name="PAY_AGENT_NAME" allowInput="fasle" class="mini-textbox" emptyText="请选择..." style="width:300px;margin-left: 5px;"
+                        valueField="ID" textfield="TEXT"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:70px;">渠道沟通大小类</td>
+                    <td style="width:300px;">    
+                        <input id="PRIVILEGE" name="PRIVILEGE" class="mini-textbox" allowInput="fasle" multiSelect="true" style="width:300px;margin-left: 5px;"
+                        showFolderCheckBox="false"/>
+                    </td>
+                </tr> 
+                <tr>                           
+                    <td style="width:70px;">税率</td>
+                    <td style="width:300px;" >    
+                        <input id="TAX_RATE" name="TAX_RATE" class="mini-textbox" allowInput="true" emptyText="请输入1以下小数" style="width:300px;margin-left: 5px;"
+                        	/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:70px;">生效时间</td>
+                    <td style="width:300px;">    
+                        <input id="EFF_DATE" name="EFF_DATE" class="mini-datepicker" style="width:300px;height:50px"  nullValue="null"
+			        			format="yyyy-MM-dd" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="false" />
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td style="width:70px;">失效时间</td>
+                    <td style="width:300px;">    
+                        <input id="EXP_DATE" name="EXP_DATE" class="mini-datepicker" style="width:300px;"  nullValue="null"
+			        			format="yyyy-MM-dd" timeFormat="H:mm:ss" showTime="true" showOkButton="true" showClearButton="false"/>
+                    </td>
+                    
+                </tr>
+               
+                        
+            </table>
+        </div>
+               
+            
+        <div style="text-align:center;padding:10px;">
+        <a class="mini-button opBtn" onclick="onOk" style="margin-left: 10px;" plain="false">保存</a>               
+        <a class="mini-button opBtn" onclick="onCancel()" style="margin-left: 10px;" plain="false">取消</a>    
+        </div>        
+    </form>
+    <script type="text/javascript">
+    mini.parse();
+    var olddata = new Object();
+    var form = new mini.Form("modifyform");
+    var nowurl  = document.location.href;
+    nowurl = nowurl.substring(0,nowurl.indexOf("html"));
+    $(function(){
+    	/* var url = nowurl+'ControlServlet.do?serviceName=commonServlet&methodName=getTreeSelect&service_name=CHL_TREE';
+    	var privilege = mini.get("PRIVILEGE");
+    	privilege.load(url);
+    	var url = nowurl+'ControlServlet.do?serviceName=commonServlet&methodName=gridValue&service_name=SEL_DETAIL_AGENT';
+    	var pay_agent_name = mini.get("PAY_AGENT_NAME");
+    	pay_agent_name.load(url); */
+    })
+    function SaveData() {
+    	var data = form.getData();
+        data.EFF_DATE = mini.get("EFF_DATE").getText();
+        data.EXP_DATE = mini.get("EXP_DATE").getText();
+        data.TAX_RATE_ID = olddata.TAX_RATE_ID;
+        if(data.PAY_AGENT_NAME&&data.PRIVILEGE&&data.TAX_RATE&&data.EFF_DATE&&data.EXP_DATE){
+        	if(getCompareDayNumber(data.EFF_DATE,data.EXP_DATE)==0){
+	       		data.service_name = "TAX_RATE_U"
+	       		console.log(data);
+		         $.jsonAjax("commonServlet", "commonUpdatedata", data, function(data) {
+		        	mini.alert(data.data,"保存",CloseWindow);
+		    	}); 
+        	}else{
+        		mini.alert("生效时间需要小于失效时间");
+        	}
+        }else{
+        	mini.alert("各项值不能为空");
+        }
+       
+    }
+    function SetData(data) {
+    	mini.parse();
+        if (data.action == "modify") {
+            //跨页面传递的数据对象，克隆后才可以安全使用
+            data = mini.clone(data);
+            olddata = data;
+        	form.setData(data);
+        	var tax = data.TAX_RATE.toString();
+        	var tax = tax.substring(0,tax.indexOf('%'));
+        	tax = tax/100;
+        	mini.get("TAX_RATE").setValue(tax);
+            form.setChanged(false);
+        }
+    }
+    function GetData() {
+        var o = form.getData();
+        return o;
+    }
+    function CloseWindow(action) {            
+        if (action == "close" && form.isChanged()) {
+            if (mini.confirm("数据被修改了，是否先保存？")) {
+                return false;
+            }
+        }
+        if (window.CloseOwnerWindow) return window.CloseOwnerWindow(action);
+        else window.close();            
+    }
+    function onOk(e) {
+        SaveData();
+    }
+    function onCancel(e) {
+        CloseWindow("cancel");
+    }
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>批次明细</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<style type="text/css">
+		.mini-fit{
+			height: 100% ! important;
+		}
+	</style>
+</head>
+<body>
+<div class="mini-fit">
+    <div style="width:100%;">
+          <a class="mini-button" style="margin-left: 50px;" onclick="excelExport()">导出</a> 
+    </div>
+    <div style="height:10px;"></div>
+    <div id="detail_grid" class="mini-datagrid" style="width:100%;height:400px;" 
+         idField="id"allowResize="true" pageSize="10"allowCellEdit="true" allowCellSelect="true" multiSelect="true" 
+        editNextOnEnterKey="true"  editNextRowCell="true" sortMode="client">
+ 	</div>
+</div>
+<script type="text/javascript">
+var nowurl  = document.location.href;
+nowurl = nowurl.substring(0,nowurl.indexOf("html"));
+$(function(){
+	mini.parse();
+	initTableHead("detail_grid","INTEGRALADJUSTDETAIL_PAGE",false);
+	var batch_no = getUrl('BATCH_NO');
+	var grid = mini.get("detail_grid");
+	var param = {
+			"BATCH_NO":batch_no,
+			"LATN_ID" :getUrl('LATN_ID'),
+			"service_name":"SALE_REWARD_SCORE_ADJ_DETAIL_Q"
+	};
+	var url = nowurl+'ControlServlet.do?serviceName=commonServlet&methodName=gridValue_rows';
+	grid.setUrl(url);
+	grid.load(param);
+})
+function getUrl(para){
+    var paraArr = location.search.substring(1).split('&');
+    for(var i = 0;i < paraArr.length;i++){
+        if(para == paraArr[i].split('=')[0]){
+            return paraArr[i].split('=')[1];
+        }
+    }
+    return '';
+}
+function excelExport(){
+	var params = {
+			"LATN_ID":getUrl('LATN_ID'),
+			"service_name":'INTEGRALADJUSTDETAIL_PAGE',
+			"file_name":"积分调整批次明细"+"_"+getUrl('BATCH_NO'),
+			"BATCH_NO":getUrl('BATCH_NO')
+	}
+	exportExcel(params);
+}
+
+</script>
+</body>
+</html>

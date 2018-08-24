@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>支付限额区间配置</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/reward/configManage/parameterConfig/pay-limit-add.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/utilMiniui.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/utilAjax.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/systemConstant.js"></script>
+	<style type="text/css">
+		.mini-fit{
+			height: 100% ! important;
+			
+		}
+	</style>
+</head>
+<body>    
+     
+    <form id="addform" method="post">
+        
+        <div style="padding-left:11px;padding-bottom:5px;">
+            <table  id="addevent" border="0" cellpadding="1" cellspacing="2" style="width:70%;
+            	table-layout:fixed;border-collapse:separate; border-spacing:0px 20px">        
+                <tr>
+                    <td  align="right">发放账户:</td>
+                    <td  align="right">    
+                        <input id="PAY_ACCT_ID" name="PAY_ACCT_ID" class="mini-combobox" required="true" style="width:90%;"
+	    					allowInput="false"/>
+	    				<input id="PAY_QUOTA_ID" name="PAY_QUOTA_ID" class="mini-hidden" />
+                    </td>
+                </tr>
+                 
+                <tr>                           
+                    <td align="right">支付上限(元):</td>
+                    <td  align="right">  
+                        <input id="UPPER_LIMIT" name="UPPER_LIMIT" class="mini-textbox" required="true" style="width:90%;"
+	    					vtype="float" vtypeErrorText="必须是数字"/>
+							
+                    </td>
+                   
+                </tr>
+                <tr>
+                    <td align="right">支付下限(元):</td>
+                    <td  align="right">  
+                        <input id="LOWER_LIMIT" name="LOWER_LIMIT" class="mini-textbox" required="true" style="width:90%;"
+	    					vtype="float" vtypeErrorText="必须是数字"/>
+                    </td>
+                    
+                    
+                </tr>
+               
+                        
+            </table>
+        </div>
+               
+            
+        <div style="text-align:center;padding:10px;">
+        <a class="mini-button " onclick="onSubmit()" style="margin-left: 10px;" plain="false">保存</a>               
+        <a class="mini-button " onclick="cancel()" style="margin-left: 10px;" plain="false">取消</a>    
+        </div>        
+    </form>
+    <script type="text/javascript">
+     
+    
+     
+	
+	 function cancel(){
+		 window.CloseOwnerWindow();
+	 }
+
+    </script>
+</body>
+</html>

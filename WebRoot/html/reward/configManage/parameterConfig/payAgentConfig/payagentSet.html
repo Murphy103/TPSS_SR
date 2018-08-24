@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>当前支付代理商设置</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/reward/configManage/parameterConfig/payAgentConfig/payagentSet.js"></script>
+</head>
+<body>    
+    <div class="p5" style="height:120px;">
+        <table id="payagentSet_form" class="formTable6" style="table-layout: fixed;">
+			<colgroup>
+				<col width="100px" />
+				<col />
+				<col width="100px" />
+				<col />
+			</colgroup>
+			
+			<tr>
+			    <th><span class="fred">*</span>渠道大小类：</th>
+			    <td colspan="3">
+			    <input id="PRIVILEGE" name="PRIVILEGE" class="mini-treeselect" multiSelect="true" style="width:220px;margin-left: 5px;"
+                        showFolderCheckBox="false"/>	            
+                </td>
+			</tr>
+			
+			<tr>
+				<th><span class="fred">*</span>奖励规则：</th>
+				<td colspan="3">
+				<input  id="REWARD_RULE_ID" name="REWARD_RULE_ID" class="mini-textbox" style="display:none"/>
+				<input id="REWARD_RULE_NAME" name="REWARD_RULE_NAME" class="mini-textbox"  emptyText="请选择奖励规则" 
+				required="true" style="width:80%;margin-left: 5px;" />
+				<a class="mini-button"  onclick="selectBut();">选择</a>
+				</td>
+			</tr>
+			<tr>
+			    <th><span class="fred">*</span>有效期：</th>
+			    <td colspan="3">
+			    <input id="EFF_DATE" name="EFF_DATE" class="mini-datepicker" allowInput="false"
+					format="yyyy-MM-dd" showTime="true" required="true"
+                        	style="width:220px;margin-left: 5px;"/>
+                <span>-</span>
+                <input id="EXP_DATE" name="EXP_DATE" class="mini-datepicker" allowInput="false"
+					format="yyyy-MM-dd" showTime="true"  required="true"
+                        	style="width:220px;margin-left: 5px;"/>
+               </td>
+			</tr>
+		</table>
+	</div>
+    <div class="mini-toolbar" style="height:28px;text-align: center; padding-top: 8px; padding-bottom:8px;"
+         borderStyle="border:0;border-top:solid 1px #b1c3e0;">
+        <a class="mini-button" onclick="onSubmit()" id="add-dir"  data-options='{"pId":"add-dir"}'>保存</a> 
+        <span style="display: inline-block; width: 25px;"></span> 
+        <a class="mini-button" onclick="closeWindow(systemVar.CANCEL)">取消</a>
+    </div>
+</body>
+</html>

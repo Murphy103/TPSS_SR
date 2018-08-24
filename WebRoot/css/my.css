@@ -1,0 +1,30 @@
+
+
+label {
+  font-weight: normal;
+  font-size: 12px;
+  padding-right:10px;
+  padding-left:10px;
+}
+
+.widget-title{font-size:12px;}
+
+.widget-title-my{color:#5B6274;font-size:12px;}
+.widget-color-my{border-color:#DCDCDC}
+.widget-color-my>.widget-header{background:#CDE2FF;border-color:#DFE3E4}
+
+.cRed{color:#f00;}
+
+.fred{
+    color:red;
+}
+
+.mini-fit{height: 100% ! important;}
+
+.ml5{margin-left:5px;}
+
+.ml20{margin-left:20px;}
+
+.mr20{margin-right:20px;}
+
+.fr{float:right;}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>因子配置</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/reward/configManage/ruleManager/factor.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/utilMiniui.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/utilAjax.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/systemConstant.js"></script>
+	<style type="text/css">
+		.mini-fit{
+			height: 100% ! important;
+		}
+	</style>
+</head>
+<body>
+<div class="mini-fit">
+    <div style="width: 100%;">
+        <div class="search" id="queryFrom" style="padding: 0px;height: 100px;">
+            <table style="width: 100%;height: 100%;">
+                <tr>
+                     <td style="width:300px">
+                        <span style="margin-left: 5px;">因子名称：</span> 
+                        <input id="factor_name" name="factor_name" class="mini-textbox"  style="width:180px;margin-left: 5px;"
+	    					/>
+                     </td>
+                     <td style="width:300px">
+                        <span style="margin-left: 5px;">因子编码：</span> 
+                        <input id="factor_code" name="factor_code" class="mini-textbox"  style="width:180px;margin-left: 5px;"
+	    					/>
+                     </td>
+                     <td >
+                        <span style="margin-left: 5px;">取值来源：</span> 
+                        <input id="value_source" name="value_source" class="mini-combobox"  
+                         style="width:180px;margin-left: 5px;"
+	    					/>
+                     </td>
+                </tr>
+                
+                <tr>
+                     <td colspan="3">
+                     	<a class="mini-button " style="margin-left: 5px;" onclick="queryData();">查询</a>
+                     	<a class="mini-button " onclick="add()" style="margin-left: 70px;" plain="false">新增</a>
+                        <a class="mini-button " onclick="modify()" style="margin-left: 70px;" plain="false">修改</a>
+                        <a class="mini-button " onclick="del()" style="margin-left: 70px;" plain="false">删除</a>
+                     </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="mini-fit" style="margin-top: 5px;">
+        <div id="event_grid" class="mini-datagrid" style="width: 100%;"
+             idField="ROLE_ID" allowResize="false" allowCellselect="false" multiSelect="true"
+             showFooter="true" sortMode="client">
+<!--             <div property="columns">            -->
+<!--                 <div type="checkcolumn" width="100px">选择</div> -->
+<!--                 <div field="BUSI_NAME" width="250px" headerAlign="center" align="center">因子分类</div> -->
+<!--                 <div field="REF_OBJ_CODE" width="250px" headerAlign="center" align="center">因子编码</div> -->
+<!--                 <div field="OBJ_NAME" width="250px" headerAlign="center" align="center">因子名称</div> -->
+<!--                 <div field="SOURCE" width="200px" headerAlign="center" align="center">取值来源</div> -->
+<!--                 <div field="REFERENCE_OBJECT_KEY" width="200px" headerAlign="center" align="center">取值KEY</div> -->
+<!--                 <div field="BUSI_CODE" name="BUSI_CODE" width="200px" headerAlign="center" align="center" >因子分类ID</div> -->
+<!--                 <div field="DATA_GET_TYPE" name="DATA_GET_TYPE" width="200px" headerAlign="center" align="center" >取值来源</div> -->
+<!--                 <div field="SQL_DESC" name="SQL_DESC" width="200px" headerAlign="center" align="center" >sql内容</div> -->
+<!--             </div> -->
+        </div>
+    </div>
+	
+</body>
+</html>

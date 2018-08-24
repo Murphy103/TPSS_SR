@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>奖励支付查询</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/reward/pay/payquery/payquery.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/utilMiniui.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/utilAjax.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/systemConstant.js"></script>
+	<style type="text/css">
+		.mini-fit{
+			height: 100% ! important;
+			
+		}
+	</style>
+</head>
+<body>    
+   <div class="mini-fit">
+    <div style="width: 100%;">
+    <input id="privilegeCode"  type="hidden" >
+  	<input id="agentCode"   type="hidden" >
+ 	 <input id="agentId"   type="hidden" >
+ 	 <input id="channelCode"   type="hidden" >
+    <input class="mini-hidden"  id="agent_id"     value="${empee1.agent_id}"/>
+    <input class="mini-hidden"  id="agent_name"   value="${empee1.agent_name}"/>
+    <input class="mini-hidden"  id="agent_latnid" value="${empee1.latn_id}"/>
+        <div class="search" id="queryFrom" style="padding: 0px;height: 160px;">
+            <table style="width: 100%;height: 100%;">
+                <tr>
+                      <td>
+                        <span style="padding-left: 5px;">&emsp;&emsp;销售员ID：</span> 
+                        <input id="STAFF_ID" name="STAFF_ID" class="mini-textbox" emptyText="全部" style="width:180px;margin-left: 5px;"
+                       valueField="ID" textfield="TEXT"/>
+                     </td>
+                     <td>
+                        <span style="padding-left: 5px;">销售员名称：</span> 
+                        <input id="STAFF_NAME" name="STAFF_NAME" class="mini-textbox" emptyText="全部" style="width:180px;margin-left: 5px;"
+                       valueField="ID" textfield="TEXT"/>
+                     </td>
+                     <td>
+                        <span style="padding-left: 5px;">翼支付账号：</span> 
+                        <input id="YZF_ACCOUNT" name="YZF_ACCOUNT" class="mini-textbox" emptyText="全部" style="width:180px;margin-left: 5px;"
+                       valueField="ID" textfield="TEXT"/>
+                     </td>
+                </tr>
+                <tr>
+                	<td>
+                        <span style="margin-left: 5px;">&emsp;渠道大小类：</span> 
+                        <input id="PRIVILEGE" name="PRIVILEGE" expandOnLoad="0" checkRecursive="true" showFolderCheckBox="true" class="mini-treeselect" multiSelect="true" style="width:180px;margin-left: 5px;"
+                        />
+                     </td>
+                     <td>
+                        <span style="padding-left: 5px;">归属代理商：</span> 
+						 <input id="OPERATORS_NAME" name="OPERATORS_NAME" class="mini-textbox"  style="width:180px;margin-left: 5px;"
+						        valueField="ID" textfield="TEXT"/>
+						        <a class="mini-button " onclick="selectagent()"style="margin-left: 5px;width:50px;">选择</a>
+						        <a class="mini-button " onclick="clearagent()"style="margin-left: 5px;width:50px;">清除</a>
+                     </td>
+                     <td>
+                        <span style="padding-left: 5px;">&emsp;归属门店：</span> 
+							<input id="CHANNEL_NAME" name="CHANNEL_NAME" class="mini-textbox"  style="width:180px;margin-left: 5px;"
+						                       valueField="ID" textfield="TEXT"/>
+						    <a class="mini-button " onclick="selectchannel()"style="margin-left: 5px;width:50px;">选择</a>
+						    <a class="mini-button " onclick="clearchannel()"style="margin-left: 5px;width:50px;">清除</a>
+                     </td>
+                </tr>
+                <tr>
+                	<td style="width:200px">
+                        <span >&ensp;订单竣工时间：</span> 
+	                        <input id="EFF_DATE" name="EFF_DATE" class="mini-datepicker" allowInput="false"
+								format="yyyy-MM-dd" showTime="true" timeFormat="H:mm:ss"  required="false"
+	                        	style="width:180px;margin-left: 5px;"/>
+                     </td>
+                     <td style="width:200px">
+                        <label style="display:inline-block;width:55px;text-align:right;"><font size="3"></font>至:</label>
+	                        <input id="EXP_DATE" name="EXP_DATE" class="mini-datepicker" allowInput="false"
+								format="yyyy-MM-dd" showTime="true" timeFormat="H:mm:ss"  required="false"
+	                         	style="width:180px;margin-left: 5px;"/>
+                     </td>
+                	<td style="width:200px">
+                        <label style="display:inline-block;text-align:right;margin-left: 5px;"><font size="3"></font>结算账期:</label> 
+                        <input id="SETTLE_CYCLE" name="SETTLE_CYCLE" class="mini-combobox" emptyText="全部" style="width:180px;margin-left: 5px;"
+                        data="getData('SETTLECYCLE',true)"/>
+                     </td>
+                     
+                </tr>
+                <tr>
+                	<td style="width:200px">
+                        <span style="margin-left: 5px;">&emsp;&emsp;&emsp;&emsp;状态：</span> 
+                        <input id="STATE" name="STATE" class="mini-combobox"  style="width:180px;margin-left: 5px;" data="data_state"/>
+                     </td>
+                     <td style="width:200px">
+                        <span style="margin-left: 5px;">&emsp;&emsp;批次号：</span> 
+                        <input id="BATCH_NO" name="BATCH_NO" class="mini-textbox"  style="width:180px;"/>
+                     </td>
+                      <td >
+                     	 <a class="mini-button" style="margin-left: 1px;width:110px;" onclick="queryData();">查询</a>
+                         <a width ="100px"  class="mini-button" style="margin-left: 1px;width:110px;" onclick="exportData();">支付清单导出</a>
+                         <a width ="100px"  class="mini-button" style="margin-left: 1px;width:110px;" onclick="importData();">支付状态导入</a>
+                     </td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
+    <div class="mini-fit" style="margin-top: 5px;">
+        <div id="payquery_grid" class="mini-datagrid" style="width: 100%; height: 600px;"
+             idField="ROLE_ID" allowResize="false" allowCellselect="false" multiSelect="true"
+             showFooter="true" sortMode="client">
+        </div>
+    </div>
+</body>
+</html>

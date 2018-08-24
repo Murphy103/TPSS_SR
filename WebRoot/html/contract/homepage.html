@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>安徽电信合同结算管理系统</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="http://code.highcharts.com/modules/exporting.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<style type="text/css">
+		
+		.mini-fit{
+			height: 100% ! important;
+		
+		}
+	</style>
+</head>
+<body>
+<div class="mini-fit">
+	<div class="tab" style="width:100%; height:150px">
+		<h1>安徽电信合同结算管理系统</h1>
+	</div>
+	<div class="home" style="width:100%; height:850px;" align="center" >
+	
+    	<div class="base_message" style="width:800px;height:400px;float:left;border:1px solid #000;">
+    	<div align="left" style="width:800px;height:50px;">
+				<div style="height:30px;line-height:30px; font-size: 1.5em; font-weight: bold;background:#F5F5F5">基本信息</div>   
+		</div>           		
+			<div class="inputcontract" style="width:700px;height:50px" >
+			   <input name="input" class="inputbox" style="width:100%;height:40px;">
+			</div>
+			<div class="result" style="width:700px;height:100px;font-weight:bold;font-size:16px;"align="left">
+				<a href="../contract/contract-query.html" value="" text-decoration="underline">新华学院2#9939</a>
+				<br>
+				<a href="../contract/contract-query.html" value="" text-decoration="underline">新华学院家属楼</a>
+			</div>    	
+			<div class="dep" style="width:700px;height:60px;font-weight:bold;font-size:16px;" align="left">   	
+				您所在的部门是：业务管理中心（IT支撑中心）
+			</div>
+			<div class="box1" style="width:700px;height:60px;font-weight:bold;font-size:16px;" align="left">
+				全区已录入合同
+				<a href="../contract/contract-query.html" value="139" text-decoration="underline">139</a>
+				张。			
+			</div>   	
+		</div>
+		
+		<div class="Reimbursement" style="width:1050px;height:400px;float:right;border:1px solid #000">
+	    	<div align="left" style="width:1050px;height:50px;">
+					<div style="height:30px;line-height:30px; font-size: 1.5em; font-weight: bold;background:#F5F5F5">报账提醒</div>   
+			</div>    
+			   
+    		<div id="datagrid1" class="mini-datagrid" style="width:900px;height:250px;" 
+			        url="../contract/data.txt" idField="id" dataField="data" 
+			        allowResize="true" pageSize="3" 
+			        allowCellEdit="true" allowCellSelect="true" multiSelect="true" 
+			        editNextOnEnterKey="true"  editNextRowCell="true"align="center">
+        		<div property="columns">
+            
+		            <div name="dep"  field="dep" headerAlign="center" allowSort="true" width="150" >部门
+		                
+		            </div>                      
+		            <div name="unsp" field="unsp" width="100" allowSort="true" >未审批
+		                
+		            </div>    
+		            <div name="insp" field="insp" width="120" headerAlign="center" allowSort="true">审批中
+		                
+		            </div>
+		            <div name="ingz" field="ingz" width="120" headerAlign="center" allowSort="true">挂账中
+		                
+		            </div>   
+		            <div name="gzed" field="gzed" width="120" headerAlign="center" allowSort="true">已挂账
+		                
+		            </div> 
+		            <div name="inbz" field="inbz" width="120" headerAlign="center" allowSort="true">报账中
+		                
+		            </div>    
+		            <div name="bzed" field="bzed" width="120" headerAlign="center" allowSort="true">已报账
+		                
+		            </div>                                                              
+    			</div>
+ 			</div>
+    		
+		</div>
+		<div class="blank" style="width:100%;height:30px;float:left;">
+			<div></div>
+		</div>
+		
+		<div class="sub" style="width:800px;height:400px;float:left;border:1px solid #000">
+	    	<div align="left" style="width:800px;height:50px;">
+					<div style="height:30px;line-height:30px; font-size: 1.5em; font-weight: bold;background:#F5F5F5">报账汇总</div>   
+			</div>    
+
+        	<div id="chartContainer" style="width:700px;height:300px;" align="left">
+    		</div>
+			 	
+		</div>
+		<div class="remain" style="width:1050px;height:400px;float:right;border:1px solid #000">
+	    	<div align="left" style="width:1050px;height:50px;">
+					<div style="height:30px;line-height:30px; font-size: 1.5em; font-weight: bold;background:#F5F5F5">待办</div>   
+			</div>  
+			<div class="red1" style="width:900px;height:100px;font-weight:bold;font-size:16px;"align="left">
+				<a href="待办链接"  style="color:black;text-decoration:underline;" >
+				新华学院网络运维合同
+				</a> 				  
+			</div> 
+			<div class="red2" style="width:900px;height:100px;font-weight:bold;font-size:16px;"align="left">
+				<a href="待办链接"  style="color:black;text-decoration:underline;" >
+				招商银行股份有限公司合肥分行统付预存费用优惠补充协议
+				</a> 				  
+			</div> 		
+ 		</div>
+    		
+	</div>
+	
+</div>
+<script type="text/javascript"> 
+	mini.parse();
+	var grid = mini.get(datagrid1);
+	grid.load();
+	grid.on("drawcell", function (e) {
+	    var record = e.record,
+	        column = e.column,
+	        field = e.field,
+	        value = e.value;
+
+
+	    //action列，超连接操作按钮
+	    if ((column.name == "unsp")||(column.name == "insp")||(column.name == "ingz")||(column.name == "gzed")||(column.name == "inbz")||(column.name == "bzed")) {
+	        e.cellStyle = "text-align:center";
+	        e.cellHtml = '<a href="../contract/contract-query.html">150</a>&nbsp; '	                  
+	    }
+
+	});
+    buildChart();
+    function buildChart(){
+        var chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'chartContainer',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: ''
+            },
+          	
+            series: [{
+                type: 'pie',
+                name: 'subshare',
+                data: [
+                    ['已报账',   15.0],
+                    ['已挂账',   25.0],
+                    
+                    ['报账中',   60.0],
+                  
+                ]
+            }]
+        });
+    }
+
+</script>
+</body>
+</html>
+
+
+

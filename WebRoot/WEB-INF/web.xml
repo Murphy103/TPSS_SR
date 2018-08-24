@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>TPSS_SR</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
+<!--   <filter> -->
+<!--     <filter-name>loginFilter</filter-name> -->
+<!--     <filter-class>com.tydic.com.filter.LoginFilter</filter-class> -->
+<!--   </filter> -->
+<!--   <filter-mapping> -->
+<!--     <filter-name>loginFilter</filter-name> -->
+<!--     <url-pattern>*.html</url-pattern> -->
+<!--   </filter-mapping> -->
+<!--   <filter-mapping> -->
+<!--     <filter-name>loginFilter</filter-name> -->
+<!--     <url-pattern>*.do</url-pattern> -->
+<!--   </filter-mapping> -->
+
+<!--SSO 过滤器-->
+ <!-- filter>
+        <filter-name>SSOFilter</filter-name>
+        <filter-class>com.tydic.lbs.filter.SSOFilter</filter-class>
+        <init-param>
+            <param-name>whiteList</param-name> 
+            <param-value>
+                /index.jsp,/css/,/images/,/js/,/public/common/,/login
+            </param-value>
+        </init-param>
+        <init-param>
+            <param-name>validateCookie</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ajaxPass</param-name>
+            <param-value>false</param-value>
+        </init-param>
+        <init-param>
+            <param-name>menuUltraVires</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ssoServerAddr</param-name>
+            <param-value>http://192.3.5.76:8080</param-value>
+        </init-param>
+        <init-param>
+            <param-name>appid</param-name>
+            <param-value>179</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>SSOFilter</filter-name>
+        <url-pattern>*</url-pattern>
+    </filter-mapping--> 
+    
+    <servlet>
+        <servlet-name>SaleRewardQuery</servlet-name>   <!--指定servlet名称-->
+        <servlet-class>com.tydic.lbs.servlet.SaleRewardQuery</servlet-class>  <!--指定servlet的类名（实现）-->
+</servlet>
+    
+<servlet-mapping>
+        <servlet-name>SaleRewardQuery</servlet-name>
+        <url-pattern>/servlet/SaleRewardQuery</url-pattern> <!--指定servlet所对应的url-->
+</servlet-mapping>
+</web-app>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>活动审批</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/reward/configManage/ruleManager/activityConfig/approval.js"></script>
+</head>
+<body>    
+    <div class="p5" >
+        <table id="approval_form" class="formTable6" style="table-layout: fixed;">
+			<colgroup>
+				<col width="100px" />
+				<col />
+				<col width="100px" />
+				<col />
+			</colgroup>
+			
+			<tr>
+				<th><span class="fred">*</span>审批结果：</th>
+				<td colspan="3"><input id="STATUS_CD" name="STATUS_CD" class="mini-radiobuttonlist ml5" repeatItems="2" 
+				repeatDirection="vertical" 	required="true" style="width:80%;" /> </td>
+			</tr>
+			
+			<tr>
+				<th><span class="fred">*</span>审批意见：</th>
+				<td colspan="3"><input id="APPROVAL_DESC" name="APPROVAL_DESC" class="mini-textarea ml5"  emptyText="请输入审批意见" 
+				required="true" style="width:80%;height:100%" /></td>
+			</tr>
+			
+		</table>
+	</div>
+    <div class="mini-toolbar" style="height:28px;text-align: center; padding-top: 8px; padding-bottom:8px;"
+         borderStyle="border:0;border-top:solid 1px #b1c3e0;">
+        <a class="mini-button" onclick="onSubmit()" id="add-dir"  data-options='{"pId":"add-dir"}'>保存</a> 
+        <span style="display: inline-block; width: 25px;"></span> 
+        <a class="mini-button" onclick="closeWindow(systemVar.CANCEL)">取消</a>
+    </div>
+</body>
+</html>

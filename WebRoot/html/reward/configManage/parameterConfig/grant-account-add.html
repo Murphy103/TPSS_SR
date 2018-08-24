@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>发放账户配置</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/reward/configManage/parameterConfig/grant-account-add.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/utilMiniui.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/utilAjax.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/systemConstant.js"></script>
+	<style type="text/css">
+		.mini-fit{
+			height: 100% ! important;
+			
+		}
+	</style>
+</head>
+<body>    
+     
+    <form id="addform" method="post">
+        <input name="id" class="mini-hidden" />
+        <div style="padding-left:1px;padding-bottom:5px;">
+            <table  id="addevent" border="0" cellpadding="1" cellspacing="2" style="width:650px;
+            	table-layout:fixed;border-collapse:separate; border-spacing:0px 20px;">        
+                <tr>
+                    <td style="width:20px;" align="center">发放账户名称:</td>
+                    <td style="width:50px;" align="center">    
+                        <input id="PAY_ACCT_NAME" name="PAY_ACCT_NAME" class="mini-textbox" required="true" style="width:100%;margin-left: 5px;"
+	    					/>
+                    </td>
+                    <td style="width:20px;" align="center">商家的企业账户:</td>
+                    <td style="width:50px;" align="center">    
+                        <input id="MERCHANT_ACCT" name="MERCHANT_ACCT" class="mini-textbox" required="true" style="width:100%;margin-left: 5px;"
+	    					/>
+                    </td>
+                </tr>
+                 
+                <tr>
+                <td style="width:20px;" align="center">是否电信账户:</td>
+                    <td style="width:50px;" align="center">    
+                        <input id="IS_TELECOM_ACCT_ID" name="IS_TELECOM_ACCT_ID" class="mini-combobox" required="true" style="width:100%;margin-left: 5px;"
+	    					/>
+                    </td>
+                    <td style="width:20px;" align="center">本地网:</td>
+                    <td style="width:50px;" align="center">    
+                        <input id="LATN_NAME_ID" name="LATN_NAME_ID" class="mini-combobox" required="true" style="width:100%;margin-left: 5px;"
+	    					/>
+                    </td>
+                   
+                </tr>
+            </table>
+        </div>
+               
+            
+        <div style="text-align:center;padding:10px;">
+        <a class="mini-button " onclick="onSubmit()" style="margin-left: 10px;" plain="false">保存</a>               
+        <a class="mini-button " onclick="cancel()" style="margin-left: 10px;" plain="false">取消</a>    
+        </div>        
+    </form>
+    <script type="text/javascript">
+     
+    
+     
+	
+	 function cancel(){
+		 window.CloseOwnerWindow();
+	 }
+
+    </script>
+</body>
+</html>

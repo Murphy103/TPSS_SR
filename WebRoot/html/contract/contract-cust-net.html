@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>合同用户维护-网格</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<style type="text/css">
+		.mini-fit{
+			height: 100% ! important;
+		}
+	</style>
+</head>
+<body>
+<div class="mini-fit">
+    <div style="width: 100%;">
+        <div class="search" id="queryFrom" style="padding: 0px;height: 100px;">
+            <table style="width: 100%;height: 100%;">
+            
+                <tr>
+                     <td>
+                        <span style="padding-left: 18px;">网格名称：</span> 
+                      <input id="con_code" name="con_code" class="mini-textbox" style="width:180px;margin-left: 5px;"/>
+                      <a class="mini-button" style="margin-left: 5px;">查询</a>
+                     </td>
+                      <td >
+                     	
+                     </td>
+                     <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+  
+    <div class="mini-fit" style="margin-top: 5px;">
+      <table>
+    <tr>
+    <td>
+     <fieldset style="width:450px;border:solid 1px #aaa;position:relative;">
+        <legend>所有网格</legend>
+        <div id="role_datagrid" class="mini-datagrid" style="width: 450px; height:50%"
+             idField="ROLE_ID" allowResize="false" allowCellselect="false" multiSelect="true"
+             showFooter="true" sortMode="client">
+            <div property="columns">
+                <div type="indexcolumn"></div>
+                <div type="checkcolumn"></div>
+                <div field="ROLE_ID" width="80" headerAlign="center" align="center">网格标识</div>
+                <div field="ROLE_NAME" width="150" headerAlign="center" align="center">网格名称</div>
+            </div>
+        </div>
+        </td>
+        <td>
+       			 ＜ <br> ＞
+        </td>
+        <td>
+         <fieldset style="width:450px;border:solid 1px #aaa;position:relative;">
+        <legend>已关联网格</legend>
+        <div id="role_datagrid" class="mini-datagrid" style="width: 450px; height:50%"
+             idField="ROLE_ID" allowResize="false" allowCellselect="false" multiSelect="true"
+             showFooter="true" sortMode="client">
+            <div property="columns">
+                <div type="indexcolumn"></div>
+                <div type="checkcolumn"></div>
+                <div field="ROLE_ID" width="80" headerAlign="center" align="center">网格标识</div>
+                <div field="ROLE_NAME" width="150" headerAlign="center" align="center">网格名称</div>
+            </div>
+        </div>
+        </td>
+        
+        </tr>
+        <tr>
+        <td colspan="2">
+                     	<a class="mini-button" style="margin-left: 5px;">保存</a>
+                        <a class="mini-button opBtn" onclick="modify()" style="margin-left: 10px;" plain="false">关闭</a>
+                      
+                     </td>
+        </tr>
+        </table>
+    </div>
+   
+</div>
+</body>
+</html>
+<script>
+function modify(){
+	window.location.href = "contract-cust-edit.html";
+}
+
+
+/**
+ * 获取所有系统的数据字典
+ * @param type
+ */
+function getSysDictData(type,flag){
+    var dataArray = [];
+	if (flag) {
+		dataArray.push({id:"", text:"=请选择=", type:type});
+	}
+    for (i = 0; i < sysDictData.length; i++) {
+        if (sysDictData[i].type == type) {
+            dataArray.push(sysDictData[i]);
+        }
+    }
+    //把数组按照order属性排序
+    dataArray.sort(function(a,b){
+        return a.order-b.order;
+    });
+    return dataArray;
+}
+
+/**
+ * 所有模块数据字典
+ * @param type  类型
+ * @returns {Array}
+ */
+var sysDictData = [
+    {id:551,code:551,text:'合肥',order:1,type:"latn_type"},
+    {id:563,code:563,text:'宣城',order:2,type:"latn_type"},
+   
+    {id:1,code:1,text:'全部',order:1,type:"is_pz"},
+    {id:2,code:2,text:'已配置',order:2,type:"is_pz"},
+    {id:3,code:3,text:'未配置',order:3,type:"is_pz"}
+];
+
+
+
+</script>

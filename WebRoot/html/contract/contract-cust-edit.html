@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>合同用户维护</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<style type="text/css">
+		.mini-fit{
+			height: 100% ! important;
+		}
+	</style>
+</head>
+<body>
+<div class="mini-fit">
+    <div style="width: 100%;">
+        <div class="search" id="queryFrom" style="padding: 0px;height: 100px;">
+            <table style="width: 100%;height: 100%;">
+                <tr>
+                  
+                    <td colspan="2" text-align="center">
+                        <span style="margin-left: 18px;">合同编码：</span> 
+                        <input id="con_code" name="con_code" class="mini-textbox" style="width:180px;margin-left: 5px;"/>
+                     </td>
+                   </tr>
+                   <tr>    
+                     <td colspan="2">
+                        <span style="margin-left: 18px;">合同名称：</span> 
+                        <input id="con_name" name="con_name" class="mini-textbox"style="width:180px;margin-left: 5px;"/>
+                     </td>
+                </tr>
+              
+            </table>
+        </div>
+    </div>
+    <div class="mini-fit" style="margin-top: 5px; border-width:1px;border-color:red">
+         <fieldset style="width:1200px;border:solid 1px #aaa;position:relative;">
+        <legend>一级筛选条件</legend>
+       <div id="tabs1" class="mini-tabs" activeIndex="0" onactivechanged="changeTabs" style="width:1200px;height:200px;" plain="false">
+		    <div title="网格" name="wg" >
+		       新华学院,高新区,机场
+		       
+		    </div>
+		    <div title="发展人"  name="oper" >
+		      张伟,王伟
+		    </div>
+		    <div title="安装地址"  name="adress">
+		    <textarea rows="10" cols="40">安徽省合肥市庐阳区</textarea>
+		
+		    </div>
+		    <div title="用户合同"  name="user_contract">
+		    <textarea rows="10" cols="40">合同1</textarea>
+		    </div>
+		    <div title="导入用户"  name="import">
+		        
+		    </div>
+		</div>
+		<table>
+			<td><span id="choose_save" style="display:none"><a class="mini-button" style="margin-left: 5px;">保存</a></span></td>
+           <!--  <td><a class="mini-button opBtn" onclick="modify()" style="margin-left: 10px;" plain="false">修改</a></td> -->
+            <td><span id="choose_area" style="display:none"><a class="mini-button opBtn" onclick="modify()">选择</a></span></td>
+    	</table>
+   </div>
+   
+     <div class="mini-fit" style="margin-top: 5px; border-width:1px;border-color:red">
+         <fieldset style="width:1200px;border:solid 1px #aaa;position:relative;">
+        <legend>二级筛选条件</legend>
+       <div id="tabs2" class="mini-tabs" activeIndex="0" onactivechanged="changeTabs2" style="width:1200px;height:200px;" plain="false">
+		    <div title="主产品" name="product" >
+		 <textarea rows="10" cols="40">产品1</textarea>
+		       
+		    </div>
+		    <div title="套餐"  name="tc" >
+		      <textarea rows="10" cols="40">套餐1</textarea>
+		    </div>
+		</div>
+		<table>
+			<td><a class="mini-button" style="margin-left: 5px;">保存</a></span></td>
+      
+    	</table>
+   </div>
+</div>
+</body>
+</html>
+<script>
+mini.parse();
+function modify(){
+
+	 var tabs = mini.get("tabs1");
+     var tab = tabs.getActiveTab();
+  	 //alert(tab.name);
+     var url = "contract-cust-net.html";
+     var title= "选择网格";
+  	 if(tab.name=='oper') {
+  		url = "contract-cust-oper.html";
+  		title="选择发展人";
+  	 } else  if(tab.name=='import') {
+  		url = "contract-cust-import.html";
+  		title="导入用户";
+  	 } 
+  	 
+    	 mini.open({
+    	     url: url,
+    	     title: title,
+    	     width: 1000, height: 400,
+    	     onload: function () {
+    	         var iframe = this.getIFrameEl();
+    	         var data = { action: "new"};
+    	         iframe.contentWindow.SetData(data);
+    	     },
+    	     ondestroy: function (action) {
+
+    	         grid.reload();
+    	     }
+    	 });
+  	 
+  	 
+}
+function changeTabs(ender, tab){
+	 var tabs = mini.get("tabs1");
+	 var tab2 = tabs.getActiveTab();
+	 var name = tab2.name;
+	 if(name=='oper'||name=='wg'||name=='import'){
+		 document.getElementById("choose_area").style.display="block";
+		 document.getElementById("choose_save").style.display="none";
+	 }else{
+		 document.getElementById("choose_area").style.display="none";
+		 document.getElementById("choose_save").style.display="block";
+	 }
+}
+
+function changeTabs2(ender, tab){
+	 var tabs = mini.get("tabs2");
+	 var tab2 = tabs.getActiveTab();
+	 var name = tab2.name;
+	 if(name=='oper'||name=='wg'||name=='user'){
+		 document.getElementById("choose_area2").style.display="block";
+		 document.getElementById("choose_save2").style.display="none";
+	 }else{
+		 document.getElementById("choose_area2").style.display="none";
+		 document.getElementById("choose_save2").style.display="block";
+	 }
+}
+/**
+ * 获取所有系统的数据字典
+ * @param type
+ */
+function getSysDictData(type,flag){
+    var dataArray = [];
+	if (flag) {
+		dataArray.push({id:"", text:"=请选择=", type:type});
+	}
+    for (i = 0; i < sysDictData.length; i++) {
+        if (sysDictData[i].type == type) {
+            dataArray.push(sysDictData[i]);
+        }
+    }
+    //把数组按照order属性排序
+    dataArray.sort(function(a,b){
+        return a.order-b.order;
+    });
+    return dataArray;
+}
+
+/**
+ * 所有模块数据字典
+ * @param type  类型
+ * @returns {Array}
+ */
+var sysDictData = [
+    {id:551,code:551,text:'合肥',order:1,type:"latn_type"},
+    {id:563,code:563,text:'宣城',order:2,type:"latn_type"},
+   
+    {id:1,code:1,text:'全部',order:1,type:"is_pz"},
+    {id:2,code:2,text:'已配置',order:2,type:"is_pz"},
+    {id:3,code:3,text:'未配置',order:3,type:"is_pz"}
+];
+
+
+
+</script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>新增</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<style type="text/css">
+		.mini-fit{
+			height: 100% ! important;
+			
+		}
+	</style>
+</head>
+<body>    
+     
+    <form id="addform" method="post">
+        <input name="id" class="mini-hidden" />
+        <div style="padding-left:11px;padding-bottom:5px;">
+            <table  border="0" cellpadding="1" cellspacing="2" style="width:100%;
+            	table-layout:fixed;border-collapse:separate; border-spacing:0px 20px">        
+                <tr>
+                    <td style="width:70px;">合同编号</td>
+                    <td style="width:150px;" align="center">    
+                        <input id="CONTRACT_ID" name="CONTRACT_ID" class="mini-autocomplete" required="true" style="width:100%;margin-left: 5px;"
+	    					valueField="id" textField="text"
+	        				url="../data/DataService?method=autoComplete" value="自动完成功能" text="自动完成功能"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width:70px;">合同名称</td>
+                    <td style="width:150px;" align="center">    
+                        <input id="CONTRACT_NAME" name="CONTRACT_NAME" class="mini-autocomplete" required="true" style="width:100%;margin-left: 5px;"
+	    					valueField="id" textField="text"
+	        				url="../data/DataService?method=autoComplete" value="自动完成功能" text="自动完成功能"/>
+                    </td>
+                </tr> 
+                <tr>                           
+                    <td >账期</td>
+                    <td  align="center">    
+                        <input id="BILLING_CYCLE_ID"name="BILLING_CYCLE_ID" class="mini-combobox" valueField="id" textField="name" required="true"
+                        	style="width:100%;margin-left: 5px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td >下限</td>
+                    <td  align="center">    
+                        <input id="LOWER_LIMIT" name="LOWER_LIMIT" class="mini-textbox" valueField="id" textField="name" required="true"
+                        	style="width:100%;margin-left: 5px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td >上限</td>
+                    <td  align="center">    
+                         <input id="UPPER_LIMIT" name="UPPER_LIMIT" class="mini-textbox" valueField="id" textField="name" required="true"
+                         	style="width:100%;margin-left: 5px;" />
+                    </td>
+                </tr>
+               
+                        
+            </table>
+        </div>
+               
+            
+        <div style="text-align:center;padding:10px;">
+        <a class="mini-button opBtn" onclick="save()" style="margin-left: 10px;" plain="false">保存</a>               
+        <a class="mini-button opBtn" onclick="cancel()" style="margin-left: 10px;" plain="false">取消</a>    
+        </div>        
+    </form>
+    <script type="text/javascript">
+     mini.parse();
+     function save(){
+    	//保存新增的合同收入承包值信息 
+     }
+	
+	 function cancel(){
+		 //取消新增操作
+	 }
+
+    </script>
+</body>
+</html>

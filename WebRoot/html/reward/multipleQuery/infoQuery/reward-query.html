@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8" />
+<title>奖励查询</title>
+
+<meta name="description" content="Static &amp; Dynamic Tables" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+	<script type="text/javascript" src="/TPSS_SR/js/head.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/reward/multipleQuery/infoQuery/reward-query.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/utilMiniui.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/utilAjax.js"></script>
+	<script type="text/javascript" src="/TPSS_SR/js/common/systemConstant.js"></script>
+	<style type="text/css">
+		.mini-fit{
+			height: 100% ! important;
+			
+		}
+	</style>
+</head>
+<body>    
+   <div class="mini-fit">
+    <div style="width: 100%;">
+    <input class="mini-hidden"  id="agent_id"     value="${empee1.agent_id}"/>
+    <input class="mini-hidden"  id="agent_name"   value="${empee1.agent_name}"/>
+    <input class="mini-hidden"  id="agent_latnid" value="${empee1.latn_id}"/>
+        <div class="search" id="queryFrom" style="padding: 0px;height: 100px;">
+            <table style="width: 100%;height: 100%;">
+                <tr>
+                	<td style="width:300px">
+                        <span style="margin-left: 5px;" align="right">渠道沟通大小类：</span> 
+                        <input id="PRIVILEGE" name="PRIVILEGE" class="mini-treeselect" multiSelect="true" style="width:180px;margin-left: 5px;"
+                        showFolderCheckBox="false"/>
+                     </td>
+                     <td style="width:300px">
+                        <span style="margin-left: 40px;">订单号：</span> 
+                        <input id="ORDER_ID" name="ORDER_ID" class="mini-textbox"  style="width:180px;margin-left: 5px;"
+	    					/>
+                     </td>
+                     <td style="width:300px">
+                        <span style="margin-left: 5px;">翼支付账号：</span> 
+                        <input id="YZF_ACCT" name="YZF_ACCT" class="mini-textbox"  style="width:180px;margin-left: 5px;"
+	    					/>
+                     </td>
+                     <td ><a class="mini-button" style="margin-left: 1px;" onclick="queryData();">查询</a></td>
+                </tr>
+                
+                <tr>
+                	<td style="width:300px" >
+                        <span style="margin-left: 40px;" align="right">门店名称：</span> 
+                        <input id="CHANNEL_NAME" name="CHANNEL_NAME" class="mini-textbox"  style="width:180px;margin-left: 5px;"
+	    					/>
+                     </td>
+                     <td style="width:300px">
+                        <span style="margin-left: 5px;">订单竣工时间：</span> 
+	                        <input id="EFF_DATE" name="EFF_DATE" class="mini-datepicker" allowInput="false"
+								format="yyyy-MM-dd HH:mm:ss" showTime="true" timeFormat="HH:mm:ss"  required="true"
+	                        	style="width:180px;margin-left: 5px;"/>
+                     </td>
+                     <td style="width:300px">
+                        <span style="margin-left: 55px;">至：</span> 
+	                        <input id="EXP_DATE" name="EXP_DATE" class="mini-datepicker" allowInput="false"
+								format="yyyy-MM-dd HH:mm:ss" showTime="true" timeFormat="HH:mm:ss"  required="true"
+	                         	style="width:180px;margin-left: 5px;"/>
+                     </td>
+                     <td ><a class="mini-button" style="margin-left: 1px;" onclick="exportData();">导出</a></td>
+                </tr>
+                
+            </table>
+        </div>
+    </div>
+    <div class="mini-fit" style="margin-top: 5px;">
+        <div id="reward_grid" class="mini-datagrid" style="width: 100%; height: 700px;"
+             idField="ROLE_ID" allowResize="false" allowCellselect="false" multiSelect="true"
+             showFooter="true" sortMode="client">
+        </div>
+    </div>
+</body>
+</html>
